@@ -1,27 +1,37 @@
-//
-//  ALAssetsLibrary+RACExtensionsSpec.m
-//  Framework-RACExtensions
-//
-//  Created by Kent Wong on 10/24/2013.
-//  Copyright (c) 2013 Autodesk. All rights reserved.
-//
+/********************************************************************
+ * (C) Copyright 2013 by Autodesk, Inc. All Rights Reserved. By using
+ * this code,  you  are  agreeing  to the terms and conditions of the
+ * License  Agreement  included  in  the documentation for this code.
+ * AUTODESK  MAKES  NO  WARRANTIES,  EXPRESS  OR  IMPLIED,  AS TO THE
+ * CORRECTNESS OF THIS CODE OR ANY DERIVATIVE WORKS WHICH INCORPORATE
+ * IT.  AUTODESK PROVIDES THE CODE ON AN 'AS-IS' BASIS AND EXPLICITLY
+ * DISCLAIMS  ANY  LIABILITY,  INCLUDING CONSEQUENTIAL AND INCIDENTAL
+ * DAMAGES  FOR ERRORS, OMISSIONS, AND  OTHER  PROBLEMS IN THE  CODE.
+ *
+ * Use, duplication,  or disclosure by the U.S. Government is subject
+ * to  restrictions  set forth  in FAR 52.227-19 (Commercial Computer
+ * Software Restricted Rights) as well as DFAR 252.227-7013(c)(1)(ii)
+ * (Rights  in Technical Data and Computer Software),  as applicable.
+ *******************************************************************/
 
 #import <Kiwi/Kiwi.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-#import "ALAssetsLibrary+RACExtensions.h"
+#import "ALAssetsLibrary+ADRACExtensions.h"
 
 
+// TODO: Add tests for the following methods.
+//
 //// Returns an assets group in the result block for a URL previously retrieved from an ALAssetsGroup object.
-//- (RACSignal *)rac_groupForURL:(NSURL *)groupURL;
+//- (RACSignal *)adrac_groupForURL:(NSURL *)groupURL;
 //
 //// Saves a video identified by a given URL to the Saved Photos album.
-//- (RACSignal *)rac_writeVideoAtPathToSavedPhotosAlbum:(NSURL *)videoPathURL;
+//- (RACSignal *)adrac_writeVideoAtPathToSavedPhotosAlbum:(NSURL *)videoPathURL;
 
 
-SPEC_BEGIN(ALAssetsLibrary_RACExtensionsSpec)
+SPEC_BEGIN(ALAssetsLibrary_ADRACExtensionsSpec)
 
-describe(@"ALAssetsLibrary+RACExtensions", ^{
+describe(@"ALAssetsLibrary+ADRACExtensions", ^{
 
     context(@"An assets library reactive extension", ^{
 
@@ -41,7 +51,7 @@ describe(@"ALAssetsLibrary+RACExtensions", ^{
             assetsLibrary = [[ALAssetsLibrary alloc] init];
 
             changeNotificationSubscription =
-            [[assetsLibrary rac_addObserverForChangedNotification]
+            [[assetsLibrary adrac_addObserverForChangedNotification]
              subscribeNext:^(NSNotification *notification) {
                  [notificationsReceived addObject:notification];
              }];
@@ -61,7 +71,7 @@ describe(@"ALAssetsLibrary+RACExtensions", ^{
             // There is no way to delete this asset group from code, so we will use a unique ID for
             // the generated assets group to avoid name collisions.
             NSString *assetsGroupName = [NSString stringWithFormat:@"FRXTest_%@", ((NSUUID *)[NSUUID UUID]).UUIDString];
-            [[assetsLibrary rac_addAssetsGroupAlbumWithName:assetsGroupName]
+            [[assetsLibrary adrac_addAssetsGroupAlbumWithName:assetsGroupName]
              subscribeNext:^(ALAssetsGroup *assetsGroup) {
                  assetsGroupFetched = assetsGroup;
              }];
@@ -79,11 +89,11 @@ describe(@"ALAssetsLibrary+RACExtensions", ^{
         it(@"Should be able to write an image and retrieve its asset from its asset URL", ^{
             __block NSURL *assetURLFetched;
             __block ALAsset *assetFetched;
-            [[assetsLibrary rac_writeImageToSavedPhotosAlbum:triangleImage.CGImage
+            [[assetsLibrary adrac_writeImageToSavedPhotosAlbum:triangleImage.CGImage
                                                  orientation:ALAssetOrientationUp]
              subscribeNext:^(NSURL *assetURL) {
                  assetURLFetched = assetURL;
-                 [[assetsLibrary rac_assetForURL:assetURL]
+                 [[assetsLibrary adrac_assetForURL:assetURL]
                   subscribeNext:^(ALAsset *asset) {
                       assetFetched = asset;
                   }];
@@ -95,8 +105,8 @@ describe(@"ALAssetsLibrary+RACExtensions", ^{
         it(@"Should be able to write an image's data", ^{
             __block NSURL *assetURLFetched;
             @autoreleasepool {
-                NSData *data = UIImageJPEGRepresentation(squigglesImage, 0.9f);
-                [[assetsLibrary rac_writeImageDataToSavedPhotosAlbum:data metadata:nil]
+                NSData *data = UIImagePNGRepresentation(squigglesImage);
+                [[assetsLibrary adrac_writeImageDataToSavedPhotosAlbum:data metadata:nil]
                  subscribeNext:^(NSURL *assetURL) {
                      assetURLFetched = assetURL;
                  }];

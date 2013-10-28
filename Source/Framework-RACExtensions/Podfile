@@ -1,9 +1,0 @@
-xcodeproj 'Framework-RACExtensions'
-platform :ios, '6.0'
-
-target 'Framework-RACExtensionsTests', :exclusive => true do
-	pod 'Kiwi/XCTest', '~> 2.2.2'
-end
-
-pod 'Framework-RACExtensions', :path => '../../'
-pod 'ReactiveCocoa', '~> 2.1.4'

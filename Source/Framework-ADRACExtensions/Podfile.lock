@@ -1,0 +1,30 @@
+PODS:
+  - Framework-ADRACExtensions (0.0.1):
+    - ReactiveCocoa (~> 2.1.4)
+  - Kiwi/ARC (2.2.3)
+  - Kiwi/NonARC (2.2.3)
+  - Kiwi/XCTest (2.2.3):
+    - Kiwi/ARC
+    - Kiwi/NonARC
+  - ReactiveCocoa (2.1.5):
+    - ReactiveCocoa/Core
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/Core (2.1.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.1.5)
+
+DEPENDENCIES:
+  - Framework-ADRACExtensions (from `../../`)
+  - Kiwi/XCTest (~> 2.2.2)
+  - ReactiveCocoa (~> 2.1.5)
+
+EXTERNAL SOURCES:
+  Framework-ADRACExtensions:
+    :path: ../../
+
+SPEC CHECKSUMS:
+  Framework-ADRACExtensions: 3f83d63c1f513a93b7ad49cced8ca14be2488598
+  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
+  ReactiveCocoa: 967339c6f6984beef304cb8bbe05581d6863bb09
+
+COCOAPODS: 0.27.1

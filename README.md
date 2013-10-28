@@ -1,4 +1,4 @@
-Framework-RACExtensions
-=======================
+Framework-ADRACExtensions
+=========================
 
-ReactiveCocoa extensions for Apple frameworks
+ReactiveCocoa extensions for Apple frameworks.

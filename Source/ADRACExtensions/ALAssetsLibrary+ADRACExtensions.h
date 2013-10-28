@@ -22,34 +22,34 @@
 @interface ALAssetsLibrary (RACExtensions)
 
 // Adds a new assets group to the library and sends an (ALAssetsGroup *) only once.
-- (RACSignal *)rac_addAssetsGroupAlbumWithName:(NSString *)name;
+- (RACSignal *)adrac_addAssetsGroupAlbumWithName:(NSString *)name;
 
 // Sends an (NSNotification *) every time the contents of the assets
 // library has changed from under the app that is using the data.
 // e.g.
 //    @weakify(self);
-//    [[assetsLibrary rac_addObserverForChangedNotification]
+//    [[assetsLibrary adrac_addObserverForChangedNotification]
 //     subscribeNext:^(NSNotification *changedNotification) {
 //         @strongify(self);
 //         // Do something with the notification.
 //     }];
-- (RACSignal *)rac_addObserverForChangedNotification;
+- (RACSignal *)adrac_addObserverForChangedNotification;
 
 // Sends the (ALAsset *) referenced by assetURL only once.
-- (RACSignal *)rac_assetForURL:(NSURL *)assetURL;
+- (RACSignal *)adrac_assetForURL:(NSURL *)assetURL;
 
 // Returns an assets group in the result block for a URL previously retrieved from an ALAssetsGroup object.
-- (RACSignal *)rac_groupForURL:(NSURL *)groupURL;
+- (RACSignal *)adrac_groupForURL:(NSURL *)groupURL;
 
 // Writes given image data and metadata to the Photos Album.
-- (RACSignal *)rac_writeImageDataToSavedPhotosAlbum:(NSData *)imageData
-                                           metadata:(NSDictionary *)metadata;
+- (RACSignal *)adrac_writeImageDataToSavedPhotosAlbum:(NSData *)imageData
+                                             metadata:(NSDictionary *)metadata;
 
 // Saves a given image to the Saved Photos album.
-- (RACSignal *)rac_writeImageToSavedPhotosAlbum:(CGImageRef)imageRef
-                                    orientation:(ALAssetOrientation)orientation;
+- (RACSignal *)adrac_writeImageToSavedPhotosAlbum:(CGImageRef)imageRef
+                                      orientation:(ALAssetOrientation)orientation;
 
 // Saves a video identified by a given URL to the Saved Photos album.
-- (RACSignal *)rac_writeVideoAtPathToSavedPhotosAlbum:(NSURL *)videoPathURL;
+- (RACSignal *)adrac_writeVideoAtPathToSavedPhotosAlbum:(NSURL *)videoPathURL;
 
 @end

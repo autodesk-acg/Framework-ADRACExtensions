@@ -14,7 +14,7 @@
  * (Rights  in Technical Data and Computer Software),  as applicable.
  *******************************************************************/
 
-#import "ALAssetsLibrary+RACExtensions.h"
+#import "ALAssetsLibrary+ADRACExtensions.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
@@ -23,7 +23,7 @@
 
 @implementation ALAssetsLibrary (RACExtensions)
 
-- (RACSignal *)rac_addAssetsGroupAlbumWithName:(NSString *)name
+- (RACSignal *)adrac_addAssetsGroupAlbumWithName:(NSString *)name
 {
     @weakify(self);
     RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -40,14 +40,14 @@
     return [signal replayLazily];
 }
 
-- (RACSignal *)rac_addObserverForChangedNotification
+- (RACSignal *)adrac_addObserverForChangedNotification
 {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     return [notificationCenter rac_addObserverForName:ALAssetsLibraryChangedNotification
                                                object:self];
 }
 
-- (RACSignal *)rac_assetForURL:(NSURL *)assetURL
+- (RACSignal *)adrac_assetForURL:(NSURL *)assetURL
 {
     @weakify(self);
     RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -64,7 +64,7 @@
     return [signal replayLazily];
 }
 
-- (RACSignal *)rac_groupForURL:(NSURL *)groupURL
+- (RACSignal *)adrac_groupForURL:(NSURL *)groupURL
 {
     @weakify(self);
     RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -81,8 +81,8 @@
     return [signal replayLazily];
 }
 
-- (RACSignal *)rac_writeImageDataToSavedPhotosAlbum:(NSData *)imageData
-                                           metadata:(NSDictionary *)metadata
+- (RACSignal *)adrac_writeImageDataToSavedPhotosAlbum:(NSData *)imageData
+                                             metadata:(NSDictionary *)metadata
 {
     @weakify(self);
     RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -102,8 +102,8 @@
     return [signal replayLazily];
 }
 
-- (RACSignal *)rac_writeImageToSavedPhotosAlbum:(CGImageRef)imageRef
-                                    orientation:(ALAssetOrientation)orientation
+- (RACSignal *)adrac_writeImageToSavedPhotosAlbum:(CGImageRef)imageRef
+                                      orientation:(ALAssetOrientation)orientation
 {
     @weakify(self);
     RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -123,7 +123,7 @@
     return [signal replayLazily];
 }
 
-- (RACSignal *)rac_writeVideoAtPathToSavedPhotosAlbum:(NSURL *)videoPathURL
+- (RACSignal *)adrac_writeVideoAtPathToSavedPhotosAlbum:(NSURL *)videoPathURL
 {
     @weakify(self);
     RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {

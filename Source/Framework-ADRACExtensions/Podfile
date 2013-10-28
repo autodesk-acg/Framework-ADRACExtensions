@@ -1,0 +1,9 @@
+xcodeproj 'Framework-ADRACExtensions'
+platform :ios, '6.0'
+
+target 'Framework-ADRACExtensionsTests', :exclusive => true do
+	pod 'Kiwi/XCTest', '~> 2.2.2'
+end
+
+pod 'Framework-ADRACExtensions', :path => '../../'
+pod 'ReactiveCocoa', '~> 2.1.5'
